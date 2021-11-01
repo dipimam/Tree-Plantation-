@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="tree_plantation_dbModelStoreContainer" CdmEntityContainer="tree_plantation_dbEntities">
+    <EntitySetMapping Name="admins">
+      <EntityTypeMapping TypeName="tree_plantation_dbModel.admin">
+        <MappingFragment StoreEntitySet="admins">
+          <ScalarProperty Name="a_id" ColumnName="a_id" />
+          <ScalarProperty Name="a_name" ColumnName="a_name" />
+          <ScalarProperty Name="a_email" ColumnName="a_email" />
+          <ScalarProperty Name="a_phone" ColumnName="a_phone" />
+          <ScalarProperty Name="a_address" ColumnName="a_address" />
+          <ScalarProperty Name="a_image" ColumnName="a_image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="assigneds">
+      <EntityTypeMapping TypeName="tree_plantation_dbModel.assigned">
+        <MappingFragment StoreEntitySet="assigneds">
+          <ScalarProperty Name="assigned_id" ColumnName="assigned_id" />
+          <ScalarProperty Name="ass_id" ColumnName="ass_id" />
+          <ScalarProperty Name="v_id" ColumnName="v_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="assignedtasks">
+      <EntityTypeMapping TypeName="tree_plantation_dbModel.assignedtask">
+        <MappingFragment StoreEntitySet="assignedtasks">
+          <ScalarProperty Name="ass_id" ColumnName="ass_id" />
+          <ScalarProperty Name="u_id" ColumnName="u_id" />
+          <ScalarProperty Name="t_id" ColumnName="t_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="assignments">
+      <EntityTypeMapping TypeName="tree_plantation_dbModel.assignment">
+        <MappingFragment StoreEntitySet="assignments">
+          <ScalarProperty Name="a_id" ColumnName="a_id" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="deadline" ColumnName="deadline" />
+          <ScalarProperty Name="tree_number" ColumnName="tree_number" />
+          <ScalarProperty Name="time" ColumnName="time" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="ass_id" ColumnName="ass_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="authentications">
+      <EntityTypeMapping TypeName="tree_plantation_dbModel.authentication">
+        <MappingFragment StoreEntitySet="authentications">
+          <ScalarProperty Name="au_id" ColumnName="au_id" />
+          <ScalarProperty Name="a_id" ColumnName="a_id" />
+          <ScalarProperty Name="a_email" ColumnName="a_email" />
+          <ScalarProperty Name="a_password" ColumnName="a_password" />
+          <ScalarProperty Name="a_type" ColumnName="a_type" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="donations">
+      <EntityTypeMapping TypeName="tree_plantation_dbModel.donation">
+        <MappingFragment StoreEntitySet="donations">
+          <ScalarProperty Name="tran_id" ColumnName="tran_id" />
+          <ScalarProperty Name="d_id" ColumnName="d_id" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="time" ColumnName="time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="donors">
+      <EntityTypeMapping TypeName="tree_plantation_dbModel.donor">
+        <MappingFragment StoreEntitySet="donors">
+          <ScalarProperty Name="d_id" ColumnName="d_id" />
+          <ScalarProperty Name="d_name" ColumnName="d_name" />
+          <ScalarProperty Name="d_email" ColumnName="d_email" />
+          <ScalarProperty Name="d_phone" ColumnName="d_phone" />
+          <ScalarProperty Name="d_address" ColumnName="d_address" />
+          <ScalarProperty Name="d_image" ColumnName="d_image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="requests">
+      <EntityTypeMapping TypeName="tree_plantation_dbModel.request">
+        <MappingFragment StoreEntitySet="requests">
+          <ScalarProperty Name="r_id" ColumnName="r_id" />
+          <ScalarProperty Name="v_id" ColumnName="v_id" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="time" ColumnName="time" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tasks">
+      <EntityTypeMapping TypeName="tree_plantation_dbModel.task">
+        <MappingFragment StoreEntitySet="tasks">
+          <ScalarProperty Name="t_id" ColumnName="t_id" />
+          <ScalarProperty Name="prove_image" ColumnName="prove_image" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="deadline" ColumnName="deadline" />
+          <ScalarProperty Name="tree_type" ColumnName="tree_type" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="v_id" ColumnName="v_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="tree_plantation_dbModel.user">
+        <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="u_id" ColumnName="u_id" />
+          <ScalarProperty Name="u_name" ColumnName="u_name" />
+          <ScalarProperty Name="u_phone" ColumnName="u_phone" />
+          <ScalarProperty Name="u_address" ColumnName="u_address" />
+          <ScalarProperty Name="u_image" ColumnName="u_image" />
+          <ScalarProperty Name="u_email" ColumnName="u_email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="volunteers">
+      <EntityTypeMapping TypeName="tree_plantation_dbModel.volunteer">
+        <MappingFragment StoreEntitySet="volunteers">
+          <ScalarProperty Name="v_id" ColumnName="v_id" />
+          <ScalarProperty Name="v_name" ColumnName="v_name" />
+          <ScalarProperty Name="v_email" ColumnName="v_email" />
+          <ScalarProperty Name="v_phone" ColumnName="v_phone" />
+          <ScalarProperty Name="v_address" ColumnName="v_address" />
+          <ScalarProperty Name="v_image" ColumnName="v_image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

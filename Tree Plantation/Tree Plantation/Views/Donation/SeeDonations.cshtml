@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "SeeDonations";
+    Layout = "~/Views/Shared/dashboard.cshtml";
+}
+
+@model List<Tree_Plantation.Models.donation>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">TRANSACTION</th>
+            <th scope="col">DATE</th>
+            <th scope="col">AMOUNT</th>
+
+            <th scope="col">DONATED BY</th>
+            <th scope="col">PHONE</th>
+            <th scope="col">ADDRESS</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+
+            <td>@item.tran_id</td>
+            <td>@item.time</td>
+            <td>@item.amount</td>
+            <td>@item.donor.d_name</td>
+            <td>@item.donor.d_phone</td>
+            <td>@item.donor.d_address</td>
+
+
+        </tr>
+        }
+
+
+
+
+    </tbody>
+</table>
+

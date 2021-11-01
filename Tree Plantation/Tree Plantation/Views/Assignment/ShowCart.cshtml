@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "ShowCart";
+    Layout = "~/Views/Shared/dashboard.cshtml";
+}
+
+@model List<Tree_Plantation.Models.volunteer>
+
+@if (Session["volunteer"] != null)
+{
+
+    <table class="table table-bordered">
+        <tr>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Address</th>
+
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>@item.v_name</td>
+                <td>@item.v_phone</td>
+                <td>@item.v_address</td>
+
+            </tr>
+
+        }
+
+
+
+    </table>
+    <a href="/Assignment/ConfirmCampaign" class="btn btn-primary">Confirm Campaign</a>
+}
+
+else
+{
+
+    <h1>No Volunteer Selected</h1>
+}
+
+<a href="/Assignment/AssignedVolunteer" class="btn btn-primary">Go Back</a>

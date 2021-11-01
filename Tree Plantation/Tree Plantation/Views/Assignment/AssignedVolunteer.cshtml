@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "AssignedVolunteer";
+    Layout = "~/Views/Shared/dashboard.cshtml";
+}
+
+@Styles.Render("~/Content/Css/assignedvolunteer.css")
+@model List<Tree_Plantation.Models.volunteer>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Address</th>
+        <th>Action</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>@item.v_name</td>
+            <td>@item.v_phone</td>
+            <td>@item.v_address</td>
+            <td><a href="/Assignment/AddtoCampaign/@item.v_id" class="btn btn-primary">Add to Campaign</a></td>
+
+        </tr>
+
+    }
+    <a href="/Assignment/ShowCart" class="btn btn-primary">Show Assigned Volunteer</a>
+
+</table>

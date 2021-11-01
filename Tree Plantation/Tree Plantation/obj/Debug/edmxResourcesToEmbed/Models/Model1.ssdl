@@ -1,0 +1,274 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="tree_plantation_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="admins">
+    <Key>
+      <PropertyRef Name="a_id" />
+    </Key>
+    <Property Name="a_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="a_name" Type="varchar" MaxLength="500" />
+    <Property Name="a_email" Type="varchar" MaxLength="500" />
+    <Property Name="a_phone" Type="int" />
+    <Property Name="a_address" Type="varchar" MaxLength="500" />
+    <Property Name="a_image" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="assigneds">
+    <Key>
+      <PropertyRef Name="assigned_id" />
+    </Key>
+    <Property Name="assigned_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ass_id" Type="int" />
+    <Property Name="v_id" Type="int" />
+  </EntityType>
+  <EntityType Name="assignedtasks">
+    <Key>
+      <PropertyRef Name="ass_id" />
+    </Key>
+    <Property Name="ass_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="u_id" Type="int" />
+    <Property Name="t_id" Type="int" />
+  </EntityType>
+  <EntityType Name="assignments">
+    <Key>
+      <PropertyRef Name="ass_id" />
+    </Key>
+    <Property Name="a_id" Type="int" />
+    <Property Name="amount" Type="int" />
+    <Property Name="deadline" Type="varchar" MaxLength="100" />
+    <Property Name="tree_number" Type="int" />
+    <Property Name="time" Type="varchar" MaxLength="100" />
+    <Property Name="status" Type="varchar" MaxLength="100" />
+    <Property Name="ass_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="authentications">
+    <Key>
+      <PropertyRef Name="au_id" />
+    </Key>
+    <Property Name="au_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="a_id" Type="int" />
+    <Property Name="a_email" Type="varchar" MaxLength="100" />
+    <Property Name="a_password" Type="varchar" MaxLength="100" />
+    <Property Name="a_type" Type="varchar" MaxLength="100" />
+    <Property Name="status" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="donations">
+    <Key>
+      <PropertyRef Name="tran_id" />
+    </Key>
+    <Property Name="tran_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="d_id" Type="int" />
+    <Property Name="amount" Type="int" />
+    <Property Name="time" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="donors">
+    <Key>
+      <PropertyRef Name="d_id" />
+    </Key>
+    <Property Name="d_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="d_name" Type="varchar" MaxLength="50" />
+    <Property Name="d_email" Type="varchar" MaxLength="50" />
+    <Property Name="d_phone" Type="int" />
+    <Property Name="d_address" Type="varchar" MaxLength="50" />
+    <Property Name="d_image" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="requests">
+    <Key>
+      <PropertyRef Name="r_id" />
+    </Key>
+    <Property Name="r_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="v_id" Type="int" />
+    <Property Name="amount" Type="int" />
+    <Property Name="time" Type="varchar" MaxLength="50" />
+    <Property Name="status" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tasks">
+    <Key>
+      <PropertyRef Name="t_id" />
+    </Key>
+    <Property Name="t_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="prove_image" Type="varchar" MaxLength="500" />
+    <Property Name="quantity" Type="varchar" MaxLength="500" />
+    <Property Name="deadline" Type="varchar" MaxLength="500" />
+    <Property Name="tree_type" Type="varchar" MaxLength="500" />
+    <Property Name="status" Type="varchar" MaxLength="500" />
+    <Property Name="v_id" Type="int" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="u_id" />
+    </Key>
+    <Property Name="u_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="u_name" Type="varchar" MaxLength="500" />
+    <Property Name="u_phone" Type="int" />
+    <Property Name="u_address" Type="varchar" MaxLength="500" />
+    <Property Name="u_image" Type="varchar" MaxLength="500" />
+    <Property Name="u_email" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="volunteers">
+    <Key>
+      <PropertyRef Name="v_id" />
+    </Key>
+    <Property Name="v_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="v_name" Type="varchar" MaxLength="50" />
+    <Property Name="v_email" Type="varchar" MaxLength="50" />
+    <Property Name="v_phone" Type="int" />
+    <Property Name="v_address" Type="varchar" MaxLength="50" />
+    <Property Name="v_image" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_assigneds_assignments">
+    <End Role="assignments" Type="Self.assignments" Multiplicity="0..1" />
+    <End Role="assigneds" Type="Self.assigneds" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="assignments">
+        <PropertyRef Name="ass_id" />
+      </Principal>
+      <Dependent Role="assigneds">
+        <PropertyRef Name="ass_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_assigneds_volunteers">
+    <End Role="volunteers" Type="Self.volunteers" Multiplicity="0..1" />
+    <End Role="assigneds" Type="Self.assigneds" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="volunteers">
+        <PropertyRef Name="v_id" />
+      </Principal>
+      <Dependent Role="assigneds">
+        <PropertyRef Name="v_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_assignedtasks_tasks">
+    <End Role="tasks" Type="Self.tasks" Multiplicity="0..1" />
+    <End Role="assignedtasks" Type="Self.assignedtasks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tasks">
+        <PropertyRef Name="t_id" />
+      </Principal>
+      <Dependent Role="assignedtasks">
+        <PropertyRef Name="t_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_assignedtasks_users">
+    <End Role="users" Type="Self.users" Multiplicity="0..1" />
+    <End Role="assignedtasks" Type="Self.assignedtasks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="u_id" />
+      </Principal>
+      <Dependent Role="assignedtasks">
+        <PropertyRef Name="u_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_assignments_admins">
+    <End Role="admins" Type="Self.admins" Multiplicity="0..1" />
+    <End Role="assignments" Type="Self.assignments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="admins">
+        <PropertyRef Name="a_id" />
+      </Principal>
+      <Dependent Role="assignments">
+        <PropertyRef Name="a_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_authentications_admins">
+    <End Role="admins" Type="Self.admins" Multiplicity="0..1" />
+    <End Role="authentications" Type="Self.authentications" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="admins">
+        <PropertyRef Name="a_id" />
+      </Principal>
+      <Dependent Role="authentications">
+        <PropertyRef Name="a_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_donations_donors">
+    <End Role="donors" Type="Self.donors" Multiplicity="0..1" />
+    <End Role="donations" Type="Self.donations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="donors">
+        <PropertyRef Name="d_id" />
+      </Principal>
+      <Dependent Role="donations">
+        <PropertyRef Name="d_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_requests_volunteers">
+    <End Role="volunteers" Type="Self.volunteers" Multiplicity="0..1" />
+    <End Role="requests" Type="Self.requests" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="volunteers">
+        <PropertyRef Name="v_id" />
+      </Principal>
+      <Dependent Role="requests">
+        <PropertyRef Name="v_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tasks_volunteers">
+    <End Role="volunteers" Type="Self.volunteers" Multiplicity="0..1" />
+    <End Role="tasks" Type="Self.tasks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="volunteers">
+        <PropertyRef Name="v_id" />
+      </Principal>
+      <Dependent Role="tasks">
+        <PropertyRef Name="v_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="tree_plantation_dbModelStoreContainer">
+    <EntitySet Name="admins" EntityType="Self.admins" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="assigneds" EntityType="Self.assigneds" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="assignedtasks" EntityType="Self.assignedtasks" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="assignments" EntityType="Self.assignments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="authentications" EntityType="Self.authentications" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="donations" EntityType="Self.donations" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="donors" EntityType="Self.donors" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="requests" EntityType="Self.requests" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tasks" EntityType="Self.tasks" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="volunteers" EntityType="Self.volunteers" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_assigneds_assignments" Association="Self.FK_assigneds_assignments">
+      <End Role="assignments" EntitySet="assignments" />
+      <End Role="assigneds" EntitySet="assigneds" />
+    </AssociationSet>
+    <AssociationSet Name="FK_assigneds_volunteers" Association="Self.FK_assigneds_volunteers">
+      <End Role="volunteers" EntitySet="volunteers" />
+      <End Role="assigneds" EntitySet="assigneds" />
+    </AssociationSet>
+    <AssociationSet Name="FK_assignedtasks_tasks" Association="Self.FK_assignedtasks_tasks">
+      <End Role="tasks" EntitySet="tasks" />
+      <End Role="assignedtasks" EntitySet="assignedtasks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_assignedtasks_users" Association="Self.FK_assignedtasks_users">
+      <End Role="users" EntitySet="users" />
+      <End Role="assignedtasks" EntitySet="assignedtasks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_assignments_admins" Association="Self.FK_assignments_admins">
+      <End Role="admins" EntitySet="admins" />
+      <End Role="assignments" EntitySet="assignments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_authentications_admins" Association="Self.FK_authentications_admins">
+      <End Role="admins" EntitySet="admins" />
+      <End Role="authentications" EntitySet="authentications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_donations_donors" Association="Self.FK_donations_donors">
+      <End Role="donors" EntitySet="donors" />
+      <End Role="donations" EntitySet="donations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_requests_volunteers" Association="Self.FK_requests_volunteers">
+      <End Role="volunteers" EntitySet="volunteers" />
+      <End Role="requests" EntitySet="requests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tasks_volunteers" Association="Self.FK_tasks_volunteers">
+      <End Role="volunteers" EntitySet="volunteers" />
+      <End Role="tasks" EntitySet="tasks" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

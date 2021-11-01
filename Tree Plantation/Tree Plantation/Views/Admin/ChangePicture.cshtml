@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "ChangePicture";
+    Layout = "~/Views/Shared/dashboard.cshtml";
+}
+@model Tree_Plantation.BModel.ChangePicture
+
+@Styles.Render("~/Content/Css/changepicture.css")
+
+<form enctype="multipart/form-data" action="/Admin/ChangePicture" method="post">
+
+    <div class="frame">
+        <div class="center">
+            <div class="title">
+                <h1>Drop file to upload</h1>
+            </div>
+
+            <div class="dropzone">
+                <img src="http://100dayscss.com/codepen/upload.svg" class="upload-icon" />
+                <input type="file" name="ImageFile" class="upload-input" />
+            </div>
+
+            <button type="submit" class="btn" name="uploadbutton">Upload file</button>
+           
+            <div class="error">
+
+                <span class="text-danger"> @ViewBag.error</span>
+                
+
+            </div>
+
+        </div>
+
+    </div>
+</form>
+

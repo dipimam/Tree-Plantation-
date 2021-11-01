@@ -1,0 +1,292 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="tree_plantation_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="admin">
+    <Key>
+      <PropertyRef Name="a_id" />
+    </Key>
+    <Property Name="a_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="a_name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="a_email" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="a_phone" Type="Int32" />
+    <Property Name="a_address" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="a_image" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="assignments" Relationship="Self.FK_assignments_admins" FromRole="admins" ToRole="assignments" />
+    <NavigationProperty Name="authentications" Relationship="Self.FK_authentications_admins" FromRole="admins" ToRole="authentications" />
+  </EntityType>
+  <EntityType Name="assigned">
+    <Key>
+      <PropertyRef Name="assigned_id" />
+    </Key>
+    <Property Name="assigned_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ass_id" Type="Int32" />
+    <Property Name="v_id" Type="Int32" />
+    <NavigationProperty Name="assignment" Relationship="Self.FK_assigneds_assignments" FromRole="assigneds" ToRole="assignments" />
+    <NavigationProperty Name="volunteer" Relationship="Self.FK_assigneds_volunteers" FromRole="assigneds" ToRole="volunteers" />
+  </EntityType>
+  <EntityType Name="assignedtask">
+    <Key>
+      <PropertyRef Name="ass_id" />
+    </Key>
+    <Property Name="ass_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="u_id" Type="Int32" />
+    <Property Name="t_id" Type="Int32" />
+    <NavigationProperty Name="task" Relationship="Self.FK_assignedtasks_tasks" FromRole="assignedtasks" ToRole="tasks" />
+    <NavigationProperty Name="user" Relationship="Self.FK_assignedtasks_users" FromRole="assignedtasks" ToRole="users" />
+  </EntityType>
+  <EntityType Name="assignment">
+    <Key>
+      <PropertyRef Name="ass_id" />
+    </Key>
+    <Property Name="a_id" Type="Int32" />
+    <Property Name="amount" Type="Int32" />
+    <Property Name="deadline" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="tree_number" Type="Int32" />
+    <Property Name="time" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="status" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ass_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="admin" Relationship="Self.FK_assignments_admins" FromRole="assignments" ToRole="admins" />
+    <NavigationProperty Name="assigneds" Relationship="Self.FK_assigneds_assignments" FromRole="assignments" ToRole="assigneds" />
+  </EntityType>
+  <EntityType Name="authentication">
+    <Key>
+      <PropertyRef Name="au_id" />
+    </Key>
+    <Property Name="au_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="a_id" Type="Int32" />
+    <Property Name="a_email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="a_password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="a_type" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="admin" Relationship="Self.FK_authentications_admins" FromRole="authentications" ToRole="admins" />
+  </EntityType>
+  <EntityType Name="donation">
+    <Key>
+      <PropertyRef Name="tran_id" />
+    </Key>
+    <Property Name="tran_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="d_id" Type="Int32" />
+    <Property Name="amount" Type="Int32" />
+    <Property Name="time" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="donor" Relationship="Self.FK_donations_donors" FromRole="donations" ToRole="donors" />
+  </EntityType>
+  <EntityType Name="donor">
+    <Key>
+      <PropertyRef Name="d_id" />
+    </Key>
+    <Property Name="d_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="d_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="d_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="d_phone" Type="Int32" />
+    <Property Name="d_address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="d_image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="donations" Relationship="Self.FK_donations_donors" FromRole="donors" ToRole="donations" />
+  </EntityType>
+  <EntityType Name="request">
+    <Key>
+      <PropertyRef Name="r_id" />
+    </Key>
+    <Property Name="r_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="v_id" Type="Int32" />
+    <Property Name="amount" Type="Int32" />
+    <Property Name="time" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="volunteer" Relationship="Self.FK_requests_volunteers" FromRole="requests" ToRole="volunteers" />
+  </EntityType>
+  <EntityType Name="task">
+    <Key>
+      <PropertyRef Name="t_id" />
+    </Key>
+    <Property Name="t_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="prove_image" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="quantity" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="deadline" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="tree_type" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="status" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="v_id" Type="Int32" />
+    <NavigationProperty Name="assignedtasks" Relationship="Self.FK_assignedtasks_tasks" FromRole="tasks" ToRole="assignedtasks" />
+    <NavigationProperty Name="volunteer" Relationship="Self.FK_tasks_volunteers" FromRole="tasks" ToRole="volunteers" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="u_id" />
+    </Key>
+    <Property Name="u_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="u_name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="u_phone" Type="Int32" />
+    <Property Name="u_address" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="u_image" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="u_email" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="assignedtasks" Relationship="Self.FK_assignedtasks_users" FromRole="users" ToRole="assignedtasks" />
+  </EntityType>
+  <EntityType Name="volunteer">
+    <Key>
+      <PropertyRef Name="v_id" />
+    </Key>
+    <Property Name="v_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="v_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="v_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="v_phone" Type="Int32" />
+    <Property Name="v_address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="v_image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="assigneds" Relationship="Self.FK_assigneds_volunteers" FromRole="volunteers" ToRole="assigneds" />
+    <NavigationProperty Name="requests" Relationship="Self.FK_requests_volunteers" FromRole="volunteers" ToRole="requests" />
+    <NavigationProperty Name="tasks" Relationship="Self.FK_tasks_volunteers" FromRole="volunteers" ToRole="tasks" />
+  </EntityType>
+  <Association Name="FK_assignments_admins">
+    <End Role="admins" Type="Self.admin" Multiplicity="0..1" />
+    <End Role="assignments" Type="Self.assignment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="admins">
+        <PropertyRef Name="a_id" />
+      </Principal>
+      <Dependent Role="assignments">
+        <PropertyRef Name="a_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_authentications_admins">
+    <End Role="admins" Type="Self.admin" Multiplicity="0..1" />
+    <End Role="authentications" Type="Self.authentication" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="admins">
+        <PropertyRef Name="a_id" />
+      </Principal>
+      <Dependent Role="authentications">
+        <PropertyRef Name="a_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_assigneds_assignments">
+    <End Role="assignments" Type="Self.assignment" Multiplicity="0..1" />
+    <End Role="assigneds" Type="Self.assigned" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="assignments">
+        <PropertyRef Name="ass_id" />
+      </Principal>
+      <Dependent Role="assigneds">
+        <PropertyRef Name="ass_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_assigneds_volunteers">
+    <End Role="volunteers" Type="Self.volunteer" Multiplicity="0..1" />
+    <End Role="assigneds" Type="Self.assigned" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="volunteers">
+        <PropertyRef Name="v_id" />
+      </Principal>
+      <Dependent Role="assigneds">
+        <PropertyRef Name="v_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_assignedtasks_tasks">
+    <End Role="tasks" Type="Self.task" Multiplicity="0..1" />
+    <End Role="assignedtasks" Type="Self.assignedtask" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tasks">
+        <PropertyRef Name="t_id" />
+      </Principal>
+      <Dependent Role="assignedtasks">
+        <PropertyRef Name="t_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_assignedtasks_users">
+    <End Role="users" Type="Self.user" Multiplicity="0..1" />
+    <End Role="assignedtasks" Type="Self.assignedtask" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="u_id" />
+      </Principal>
+      <Dependent Role="assignedtasks">
+        <PropertyRef Name="u_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_donations_donors">
+    <End Role="donors" Type="Self.donor" Multiplicity="0..1" />
+    <End Role="donations" Type="Self.donation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="donors">
+        <PropertyRef Name="d_id" />
+      </Principal>
+      <Dependent Role="donations">
+        <PropertyRef Name="d_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_requests_volunteers">
+    <End Role="volunteers" Type="Self.volunteer" Multiplicity="0..1" />
+    <End Role="requests" Type="Self.request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="volunteers">
+        <PropertyRef Name="v_id" />
+      </Principal>
+      <Dependent Role="requests">
+        <PropertyRef Name="v_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tasks_volunteers">
+    <End Role="volunteers" Type="Self.volunteer" Multiplicity="0..1" />
+    <End Role="tasks" Type="Self.task" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="volunteers">
+        <PropertyRef Name="v_id" />
+      </Principal>
+      <Dependent Role="tasks">
+        <PropertyRef Name="v_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="tree_plantation_dbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="admins" EntityType="Self.admin" />
+    <EntitySet Name="assigneds" EntityType="Self.assigned" />
+    <EntitySet Name="assignedtasks" EntityType="Self.assignedtask" />
+    <EntitySet Name="assignments" EntityType="Self.assignment" />
+    <EntitySet Name="authentications" EntityType="Self.authentication" />
+    <EntitySet Name="donations" EntityType="Self.donation" />
+    <EntitySet Name="donors" EntityType="Self.donor" />
+    <EntitySet Name="requests" EntityType="Self.request" />
+    <EntitySet Name="tasks" EntityType="Self.task" />
+    <EntitySet Name="users" EntityType="Self.user" />
+    <EntitySet Name="volunteers" EntityType="Self.volunteer" />
+    <AssociationSet Name="FK_assignments_admins" Association="Self.FK_assignments_admins">
+      <End Role="admins" EntitySet="admins" />
+      <End Role="assignments" EntitySet="assignments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_authentications_admins" Association="Self.FK_authentications_admins">
+      <End Role="admins" EntitySet="admins" />
+      <End Role="authentications" EntitySet="authentications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_assigneds_assignments" Association="Self.FK_assigneds_assignments">
+      <End Role="assignments" EntitySet="assignments" />
+      <End Role="assigneds" EntitySet="assigneds" />
+    </AssociationSet>
+    <AssociationSet Name="FK_assigneds_volunteers" Association="Self.FK_assigneds_volunteers">
+      <End Role="volunteers" EntitySet="volunteers" />
+      <End Role="assigneds" EntitySet="assigneds" />
+    </AssociationSet>
+    <AssociationSet Name="FK_assignedtasks_tasks" Association="Self.FK_assignedtasks_tasks">
+      <End Role="tasks" EntitySet="tasks" />
+      <End Role="assignedtasks" EntitySet="assignedtasks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_assignedtasks_users" Association="Self.FK_assignedtasks_users">
+      <End Role="users" EntitySet="users" />
+      <End Role="assignedtasks" EntitySet="assignedtasks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_donations_donors" Association="Self.FK_donations_donors">
+      <End Role="donors" EntitySet="donors" />
+      <End Role="donations" EntitySet="donations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_requests_volunteers" Association="Self.FK_requests_volunteers">
+      <End Role="volunteers" EntitySet="volunteers" />
+      <End Role="requests" EntitySet="requests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tasks_volunteers" Association="Self.FK_tasks_volunteers">
+      <End Role="volunteers" EntitySet="volunteers" />
+      <End Role="tasks" EntitySet="tasks" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
